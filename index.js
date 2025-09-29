@@ -45,6 +45,9 @@ async function fetchColorsList() {
         // la lista de colores, que está en la propiedad data
         const colors = result.data;
 
+        //guardar
+        localStorage.setItem("colors", JSON.stringify(colors));
+
         // 3. Recorremos la lista de colores.
         for (const color of colors) {
             addItem(color);
@@ -57,9 +60,17 @@ async function fetchColorsList() {
 
 
 function loadColorsFromStorage() {
-  
-}
+  const storedColors = localStorage.getItem("colors");
 
+  if (storedColors) {
+    const colors = JSON.parse(storedColors);
+    for (const color of colors) {
+      addItem(color);
+    }
+  } else {
+    console.log("No hay colores guardados en localStorage.");
+  }
+}
 fetchColorsList()
 loadColorsFromStorage()
 
