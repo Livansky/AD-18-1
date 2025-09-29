@@ -38,3 +38,30 @@ function loadColorsFromStorage() {
 
 fetchColorsList()
 loadColorsFromStorage()
+
+async function fetchColorsList() {
+    const url = "https://reqres.in/api/unknown";
+    const options = {
+        method: "GET",
+        headers: {
+            "x-api-key": "reqres-free-v1"
+        }
+    };
+
+    try {
+        // petición a la API.
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        // la lista de colores, que está en la propiedad data
+        const colors = result.data;
+
+        // 3. Recorremos la lista de colores.
+        for (const color of colors) {
+            addItem(color);
+        }
+
+    } catch (error) {
+        console.error("error al obtener los colores:", error);
+    }
+}
