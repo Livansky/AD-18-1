@@ -28,17 +28,6 @@ function addItem(item) {
   itemsContainer.append(colourCardBreak)
 }
 
-function fetchColorsList() {
-  
-}
-
-function loadColorsFromStorage() {
-  
-}
-
-fetchColorsList()
-loadColorsFromStorage()
-
 async function fetchColorsList() {
     const url = "https://reqres.in/api/unknown";
     const options = {
@@ -52,7 +41,7 @@ async function fetchColorsList() {
         // petición a la API.
         const response = await fetch(url, options);
         const result = await response.json();
-
+        console.log("resouesta", result);
         // la lista de colores, que está en la propiedad data
         const colors = result.data;
 
@@ -65,3 +54,12 @@ async function fetchColorsList() {
         console.error("error al obtener los colores:", error);
     }
 }
+
+
+function loadColorsFromStorage() {
+  
+}
+
+fetchColorsList()
+loadColorsFromStorage()
+
